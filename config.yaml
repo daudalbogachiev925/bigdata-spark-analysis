@@ -1,0 +1,25 @@
+paths:
+  input: "data/sales.csv"
+  output_dir: "output"
+  report: "output/report.txt"
+
+spark:
+  app_name: "SalesAnalysis"
+  shuffle_partitions: 4
+  log_level: "WARN"
+
+cleaning:
+  drop_duplicates: true
+  fill_missing: "median"
+  remove_outliers: true
+  iqr_multiplier: 1.5
+
+aggregation:
+  group_by:
+    - region
+    - month
+    - product
+  metrics:
+    - total_sales
+    - avg_sale
+    - orders_count
